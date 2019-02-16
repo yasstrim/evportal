@@ -1,0 +1,13 @@
+# строка Options запрет показа содержимого папок,запрет SSI
+# разрешает использовать символические ссылки на файлы или каталоги, не находящиеся в пределах корня
+AddDefaultCharset UTF-8
+Options All -Indexes -Includes +FollowSymLinks
+RewriteEngine On
+RewriteBase /
+#RewriteCond %{REQUEST_URI} ^/(i|templates|script)/.*|^(/style\.css|/install\.php|/robots\.txt|.*\.xls|.*\.doc)
+#RewriteRule . - [L]
+# все запросы не являющиеся файлом или директорий перенаправлять на index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ ./index.php
+
